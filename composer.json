@@ -1,0 +1,16 @@
+{
+  "name": "kheng-uzamaki/job-hunt-php",
+  "description": "A simple job hunt application using PHP",
+  "authors": [
+    {
+      "name": "Kheng",
+      "email": "hengsokkheng145@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}
