@@ -13,7 +13,7 @@
         <div class="message bg-green-100 p-3 my-3">
           This is a success message.
         </div> -->
-        <form method="POST">
+        <form method="POST" action="/listings">
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">
                 Job Info
             </h2>
@@ -40,14 +40,14 @@
             <div class="mb-4">
                 <input
                     type="text"
-                    name="requirements"
+                    name="requirement"
                     placeholder="Requirements"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
             <div class="mb-4">
                 <input
                     type="text"
-                    name="benefits"
+                    name="benifit"
                     placeholder="Benefits"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
