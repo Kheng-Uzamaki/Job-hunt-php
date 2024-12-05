@@ -86,7 +86,7 @@ class ListingController
 
         $newListingData = array_map('sanitize', $newListingData);
 
-        $requiredFields = ['title', 'description','salary', 'email', 'city', 'state'];
+        $requiredFields = ['title', 'description', 'salary', 'email', 'city', 'state'];
 
         $errors = [];
 
@@ -137,8 +137,9 @@ class ListingController
      * @param array $params
      * @return void
      */
-    public function destroy($params){
-        $id = $params['id']?? '';
+    public function destroy($params)
+    {
+        $id = $params['id'] ?? '';
 
         $params = [
             'id' => $id
@@ -146,7 +147,7 @@ class ListingController
 
         $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
 
-        if(!$listing) {
+        if (!$listing) {
             ErrorController::notFound('Listing not found!');
             return;
         }
@@ -155,10 +156,34 @@ class ListingController
 
         //set flash message
         $_SESSION['success_message'] = 'Listing deleted successfully!';
-        
+
         //redirect to listings page
         redirect('/listings');
+    }
 
-        
+    /**
+     * show the listing edit form
+     *@param  array $params
+     * @return void
+     */
+    public function edit($params)
+    {
+        $id = $params['id'] ?? '';
+
+        $params = [
+            'id' => $id
+        ];
+
+        $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
+
+        //check if listing not exist
+        if (!$listing) {
+            ErrorController::notFound('Listing not found!');
+            return;
+        }
+
+        loadView('listings/edit', [
+            'listing' => $listing
+        ]);
     }
 }

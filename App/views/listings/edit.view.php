@@ -5,11 +5,10 @@
 <!-- Top-Banner -->
 <?= loadPartial('top-banner') ?>
 
-<!-- Post a Job Form Box -->
+<!-- Edit a Job Form Box -->
 <section class="flex justify-center items-center mt-20">
     <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-600 mx-6">
-        <h2 class="text-4xl text-center font-bold mb-4">Create Job Listing</h2>
-        
+        <h2 class="text-4xl text-center font-bold mb-4">Edit Job Listing</h2>
         <form method="POST" action="/listings">
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">
                 Job Info
@@ -27,7 +26,7 @@
                 <input
                     type="text"
                     name="title"
-                    value="<?= $listing['title'] ?? '' ?>"
+                    value="<?= $listing->title ?? '' ?>"
                     placeholder="Job Title"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -35,13 +34,13 @@
                 <textarea
                     name="description"
                     placeholder="Job Description"
-                    class="w-full px-4 py-2 border rounded focus:outline-none"><?= $listing['description'] ?? '' ?></textarea>
+                    class="w-full px-4 py-2 border rounded focus:outline-none"><?= $listing->description ?? '' ?></textarea>
             </div>
             <div class="mb-4">
                 <input
                     type="text"
                     name="salary"
-                    value="<?= $listing['salary'] ?? '' ?>"
+                    value="<?= $listing->salary ?? '' ?>"
                     placeholder="Annual Salary"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -49,7 +48,7 @@
                 <input
                     type="text"
                     name="requirement"
-                    value="<?= $listing['requirement'] ?? '' ?>"
+                    value="<?= $listing->requirement ?? '' ?>"
                     placeholder="Requirements"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -57,7 +56,7 @@
                 <input
                     type="text"
                     name="benifit"
-                    value="<?= $listing['benifit'] ?? '' ?>"
+                    value="<?= $listing->benifit ?? '' ?>"
                     placeholder="Benefits"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -65,7 +64,7 @@
                 <input
                     type="text"
                     name="tags"
-                    value="<?= $listing['tags'] ?? '' ?>"
+                    value="<?= $listing->tags ?? '' ?>"
                     placeholder="tags"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -76,7 +75,7 @@
                 <input
                     type="text"
                     name="company"
-                    value="<?= $listing['company'] ?? '' ?>"
+                    value="<?= $listing->company ?? '' ?>"
                     placeholder="Company Name"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -84,7 +83,7 @@
                 <input
                     type="text"
                     name="address"
-                    value="<?= $listing['address'] ?? '' ?>"
+                    value="<?= $listing->address ?? '' ?>"
                     placeholder="Address"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -92,7 +91,7 @@
                 <input
                     type="text"
                     name="city"
-                    value="<?= $listing['city'] ?? '' ?>"
+                    value="<?= $listing->city ?? '' ?>"
                     placeholder="City"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -100,7 +99,7 @@
                 <input
                     type="text"
                     name="state"
-                    value="<?= $listing['state'] ?? '' ?>"
+                    value="<?= $listing->state ?? '' ?>"
                     placeholder="State"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -108,7 +107,7 @@
                 <input
                     type="text"
                     name="phone"
-                    value="<?= $listing['phone'] ?? '' ?>"
+                    value="<?= $listing->phone ?? '' ?>"
                     placeholder="Phone"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -116,7 +115,7 @@
                 <input
                     type="email"
                     name="email"
-                    value="<?= $listing['email'] ?? '' ?>"
+                    value="<?= $listing->email ?? '' ?>"
                     placeholder="Email Address For Applications"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
             </div>
@@ -125,7 +124,7 @@
                 Save
             </button>
             <a
-                href="/"
+                href="/listings/<?= $listing->id ?>"
                 class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none">
                 Cancel
             </a>
