@@ -14,6 +14,11 @@ class ListingController
         $this->db = new Database($config);
     }
 
+    /**
+     * show the listings
+     *
+     * @return void
+     */
     public function index()
     {
 
@@ -25,11 +30,22 @@ class ListingController
         ]);
     }
 
+    /**
+     * create a new listing
+     *
+     * @return void
+     */
     public function create()
     {
         loadView('/listings/create');
     }
 
+
+    /**
+     * show a details listing
+     *
+     * @return void
+     */
     public function show()
     {
         $id = $_GET['id'] ?? '';

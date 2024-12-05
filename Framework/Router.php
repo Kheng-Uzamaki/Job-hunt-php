@@ -1,6 +1,7 @@
 <?php
 
 namespace Framework;
+use App\Controllers\ErrorController;
 
 class Router
 {
@@ -32,13 +33,7 @@ class Router
      * @param int $httpCode
      * @return void
      */
-    public function error($httpCode = 404)
-    {
-        // 404 Not Found
-        http_response_code($httpCode);
-        loadView('error/{$httpCode}');
-        exit;
-    }
+
 
     /**
      * Add a GET route
@@ -113,6 +108,6 @@ class Router
                 return;
             }
         }
-        $this->error();
+        ErrorController::notFound();
     }
 }
