@@ -181,7 +181,7 @@ class ListingController
      */
     public function edit($params)
     {
-        
+
 
         $id = $params['id'] ?? '';
 
@@ -283,5 +283,36 @@ class ListingController
             //redirect to listings page
             redirect('/listings/' . $id);
         }
+    }
+
+    /**
+     * Searcch Listing by keywords/location
+     * 
+     * @return void
+     */
+    public function search()
+    {
+        $keywords = isset($_GET['keywords']) ? trim($_GET['keywords']) : '';
+
+        $location = isset($_GET['location']) ? trim($_GET['location']) : '';
+
+        $query = "SELECT * FROM listings WHERE (title LIKE :keywords OR description LIKE :keywords OR tags LIKE :keywords OR company LIKE :keywords) AND (city LIKE :location OR city LIKE :location)";
+
+        $params = [
+            'keywords' => "%{$keywords}%",
+            'location' => "%{$location}%"
+        ];
+
+        $listings = $this->db->query($query, $params)->fetchAll();
+
+        
+
+        loadView('/listings/index', [
+            'listings' => $listings,
+            'keywords' => $keywords,
+            'location' => $location
+        ]);
+
+
     }
 }
