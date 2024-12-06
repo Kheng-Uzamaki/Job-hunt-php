@@ -11,7 +11,7 @@
             'error' => $errors ?? [],
         ]) ?>
 
-        <form>
+        <form method="POST" action="/auth/login">
             <div class="mb-4">
                 <input
                     type="email"
