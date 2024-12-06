@@ -51,7 +51,7 @@ class UserController
 
         //validation
         if (!Validation::email($email)) {
-            $errors['email'] = 'Pleae enter a valid email!';
+            $errors['email'] = 'Please enter a valid email!';
         }
 
         if (!Validation::string($name, 2, 50)) {
@@ -62,7 +62,7 @@ class UserController
             $errors['name'] = 'Password must be at least 6 charaters!';
         }
 
-        if (!Validation::match($password,$passwordConfirmation)) {
+        if (!Validation::match($password, $passwordConfirmation)) {
             $errors['name'] = 'Password do not match!';
         }
 
@@ -77,7 +77,35 @@ class UserController
                 ]
             ]);
             exit;
-        } else {
         }
+
+        // check if email is existing
+        $params = [
+            'email' => $email
+        ];
+
+        $user = $this->db->query('SELECT email FROM users WHERE email = :email', $params)->fetch();
+
+        if ($user) {
+            $errors['email'] = 'Email already exists!';
+            loadView('users/create', [
+                'errors' => $errors,
+            ]);
+            exit;
+        }
+
+        // Create new user
+        $params = [
+            'name' => $name,
+            'email' => $email,
+            'city' => $city,
+            'state' => $state,
+            // Hash password
+            'password' => password_hash($password, PASSWORD_DEFAULT)
+        ];
+
+        $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
+
+        redirect('/');
     }
 }
