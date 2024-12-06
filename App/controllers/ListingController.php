@@ -129,6 +129,8 @@ class ListingController
 
             $this->db->query($query, $newListingData);
 
+            Session::setFlashMessage('success_message', 'Listing created successfully!');
+
             redirect('/listings');
         }
     }
@@ -158,14 +160,15 @@ class ListingController
 
         //Authorization
         if (!Authorization::isOwner($listing->user_id)) {
-            $_SESSION['error_message'] = 'You are not authorize to this listing!';
+            Session::setFlashMessage('error_message', 'You are not authorize to this listing!');
             return redirect('/listings/' . $listing->id);
         }
 
         $this->db->query('DELETE FROM listings WHERE id = :id', $params);
 
         //set flash message
-        $_SESSION['success_message'] = 'Listing deleted successfully!';
+        Session::setFlashMessage('success_message', 'Listing deleted successfully!');
+
 
         //redirect to listings page
         redirect('/listings');
@@ -260,7 +263,8 @@ class ListingController
             $this->db->query($updateQuery, $updateValues);
 
 
-            $_SESSION['success_message'] = 'Updated listings!';
+
+            Session::setFlashMessage('success_message', 'Successfully updated listings!');
 
             //redirect to listings page
             redirect('/listings/' . $id);
