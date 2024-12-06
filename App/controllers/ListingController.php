@@ -181,6 +181,8 @@ class ListingController
      */
     public function edit($params)
     {
+        
+
         $id = $params['id'] ?? '';
 
         $params = [
@@ -193,6 +195,12 @@ class ListingController
         if (!$listing) {
             ErrorController::notFound('Listing not found!');
             return;
+        }
+
+        //Authorization
+        if (!Authorization::isOwner($listing->user_id)) {
+            Session::setFlashMessage('error_message', 'You are not authorize to this listing!');
+            return redirect('/listings/' . $listing->id);
         }
 
         loadView('listings/edit', [
@@ -220,6 +228,12 @@ class ListingController
         if (!$listing) {
             ErrorController::notFound('Listing not found!');
             return;
+        }
+
+        //Authorization
+        if (!Authorization::isOwner($listing->user_id)) {
+            Session::setFlashMessage('error_message', 'You are not authorize to update this listing!');
+            return redirect('/listings/' . $listing->id);
         }
 
         $allowedFields = ['title', 'description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirement', 'benifit'];
