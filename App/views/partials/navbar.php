@@ -12,11 +12,11 @@ use Framework\Session; ?>
             <?php if (Session::has('user')) : ?>
                 <div class="flex justify-between items-center gap-4">
                     <div>
-                        Welcome <strong>
+                        Welcome <strong class="text-blue-500">
                             <?= Session::get('user')['name'] ?>
                         </strong>
                     </div>
-                    <form>
+                    <form method="POST" action="/auth/logout">
                         <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded hover:shadow-md transition duration-300">Logout</button>
                     </form>
                     <a
